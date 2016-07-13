@@ -100,7 +100,6 @@ class OpenstackClient:
                     raise Exception
                 break
 
-
             # Exit loop
             else:
                 break
@@ -265,9 +264,9 @@ class OpenstackClient:
 
         return volumes
 
-    def volume_detail(self):
+    def backup_list(self):
 
-        ret = requests.get("%s/volumes/detail" % (self.srv_endpoint),
+        ret = requests.get("%s/backups" % (self.srv_endpoint),
                            headers=self.client_headers)
 
         if not ret.status_code == 200:
@@ -275,9 +274,9 @@ class OpenstackClient:
                    % ret.status_code
             raise Exception
 
-        vol_info = json.loads(ret.text)
+        backups = json.loads(ret.text)
 
-        return vol_info
+        return backups
 
 
 def main():
@@ -287,7 +286,7 @@ def main():
     auth_url = 'http://10.104.0.22:5000/v2.0/tokens'
 
     while True:
-        print "Available service: nova / ironic / neutron / glance / magnum / cinder"
+        print "Service: nova / ironic / neutron / glance / magnum / cinder"
         service = raw_input("Enter your choice: ")
         if service not in ['nova', 'ironic', 'neutron', 'glance', 'magnum',
                            'cinder']:
@@ -296,9 +295,8 @@ def main():
             break
 
     while True:
-        #action = raw_input("Enter the action: ")
         if service == 'nova':
-            print "Available action: instance_list / flavor_list"
+            print "Action: instance_list / flavor_list"
             action = raw_input("Enter your choice: ")
             if action not in ['instance_list', 'flavor_list']:
                 print "Please enter a currect action."
@@ -306,7 +304,7 @@ def main():
                 method = eval('action')
                 break
         elif service == 'ironic':
-            print "Available action: node_list / node_port_list"
+            print "Action: node_list / node_port_list"
             action = raw_input("Enter your choice: ")
             if action not in ['node_list', 'node_port_list']:
                 print "Please enter a currect action."
@@ -314,7 +312,7 @@ def main():
                 method = eval('action')
                 break
         elif service == 'neutron':
-            print "Available action: net_list / subnet_list / net_port_list"
+            print "Action: net_list / subnet_list / net_port_list"
             action = raw_input("Enter choice: ")
             if action not in ['net_list', 'subnet_list', 'net_port_list']:
                 print "Please enter a currect action."
@@ -322,7 +320,7 @@ def main():
                 method = eval('action')
                 break
         elif service == 'glance':
-            print "Available action: image_list"
+            print "Action: image_list"
             action = raw_input("Enter your choice: ")
             if action not in ['image_list']:
                 print "Please enter a currect action."
@@ -330,7 +328,7 @@ def main():
                 method = eval('action')
                 break
         elif service == 'magnum':
-            print "Available action: baymodel_list / bay_list / pod_list"
+            print "Action: baymodel_list / bay_list / pod_list"
             action = raw_input("Enter your choice: ")
             if action not in ['baymodel_list', 'bay_list', 'pod_list']:
                 print "Please enter a currect action."
@@ -338,9 +336,9 @@ def main():
                 method = eval('action')
                 break
         elif service == 'cinder':
-            print "Available action: volume_list / volume_detail" 
+            print "Action: volume_list / backup_list"
             action = raw_input("Enter your choice: ")
-            if action not in ['volume_list', 'volume_detail']:
+            if action not in ['volume_list', 'backup_list']:
                 print "Please enter a currect action."
             else:
                 method = eval('action')
