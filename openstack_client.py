@@ -107,109 +107,84 @@ class OpenstackClient:
         self.client_headers = {'X-Auth-Token': token_id}
 
     def instance_list(self):
-
         ret = requests.get("%s/servers/detail" % (self.srv_endpoint),
                            headers=self.client_headers)
         if not ret.status_code == 200:
             print "get node list failed and staus code is %s" % ret.status_code
             raise Exception
-
         servers = json.loads(ret.text)
-
         return servers
 
     def flavor_list(self):
-
         ret = requests.get("%s/flavors" % (self.srv_endpoint),
                            headers=self.client_headers)
         if not ret.status_code == 200:
             print "get flavors info failed and status code is %s"\
                    % ret.status_code
             raise Exception
-
         flavors = json.loads(ret.text)
-
         return flavors
 
     def node_list(self):
-
         ret = requests.get("%s/v1/nodes/detail" % self.srv_endpoint,
                            headers=self.client_headers)
         if not ret.status_code == 200:
             print "get nodes list failed and status code is %s"\
                    % ret.status_code
             raise Exception
-
         nodes = json.loads(ret.text)
-
         return nodes
 
     def node_port_list(self):
-
         ret = requests.get("%s/v1/ports" % self.srv_endpoint,
                            headers=self.client_headers)
         if not ret.status_code == 200:
             print "get ports list failed and status code is %s"\
                    % ret.status_code
             raise Exception
-
         port_list = json.loads(ret.text)
-
         return port_list
 
     def image_list(self):
-
         ret = requests.get("%s/v2/images" % (self.srv_endpoint),
                            headers=self.client_headers)
         if not ret.status_code == 200:
             print "get images list failed and staus code is %s"\
                    % ret.status_code
             raise Exception
-
         imgs_list = json.loads(ret.text)
-
         return imgs_list
 
     def net_list(self):
-
         ret = requests.get("%s/v2.0/networks" % (self.srv_endpoint),
                            headers=self.client_headers)
         if not ret.status_code == 200:
             print "get net list failed and staus code is %s" % ret.status_code
             raise Exception
-
         networks = json.loads(ret.text)
-
         return networks
 
     def subnet_list(self):
-
         ret = requests.get("%s/v2.0/subnets" % (self.srv_endpoint),
                            headers=self.client_headers)
         if not ret.status_code == 200:
             print "get subnets list failed and staus code is %s"\
                    % ret.status_code
             raise Exception
-
         subnets = json.loads(ret.text)
-
         return subnets
 
     def net_port_list(self):
-
         ret = requests.get("%s/v2.0/ports" % (self.srv_endpoint),
                            headers=self.client_headers)
         if not ret.status_code == 200:
             print "get ports list failed and staus code is %s"\
                    % ret.status_code
             raise Exception
-
         ports = json.loads(ret.text)
-
         return ports
 
     def baymodel_list(self):
-
         ret = requests.get("%s/baymodels" % (self.srv_endpoint),
                            headers=self.client_headers)
 
@@ -217,65 +192,47 @@ class OpenstackClient:
             print "get baymodels list failed and status code is %s"\
                    % ret.status_code
             raise Exception
-
         model_list = json.loads(ret.text)
-
         return model_list
 
     def bay_list(self):
-
         ret = requests.get("%s/bays" % (self.srv_endpoint),
                            headers=self.client_headers)
-
         if not ret.status_code == 200:
             print "get bays list failed and status code is %s"\
                    % ret.status_code
             raise Exception
-
         bay_list = json.loads(ret.text)
-
         return bay_list
 
     def pod_list(self):
-
         ret = requests.get("%s/pods" % (self.srv_endpoint),
                            headers=self.client_headers)
-
         if not ret.status_code == 200:
             print "get pods list failed and status code is %s"\
                    % ret.status_code
             raise Exception
-
         pod_list = json.loads(ret.text)
-
         return pod_list
 
     def volume_list(self):
-
         ret = requests.get("%s/volumes" % (self.srv_endpoint),
                            headers=self.client_headers)
-
         if not ret.status_code == 200:
             print "get volumes list failed and status code is %s"\
                    % ret.status_code
             raise Exception
-
         volumes = json.loads(ret.text)
-
         return volumes
 
     def backup_list(self):
-
         ret = requests.get("%s/backups" % (self.srv_endpoint),
                            headers=self.client_headers)
-
         if not ret.status_code == 200:
             print "get volumes detail failed and status code is %s"\
                    % ret.status_code
             raise Exception
-
         backups = json.loads(ret.text)
-
         return backups
 
 
